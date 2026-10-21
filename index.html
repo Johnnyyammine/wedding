@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f0e6">
+  <meta name="color-scheme" content="light">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Johnny &amp; Carla · 12 June 2027</title>
+  <meta name="description" content="Johnny & Carla are getting married on Saturday 12 June 2027 in Mansourieh. Kindly RSVP.">
+
+  <!-- Link preview in WhatsApp / iMessage. og:image and og:url must be full https:// addresses: fill them in after deploying (see SETUP.md). -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Johnny & Carla · 12 June 2027">
+  <meta property="og:description" content="We're getting married! Tap to see the details and RSVP.">
+  <meta property="og:image" content="https://YOUR-USERNAME.github.io/wedding/photos/hero.jpg">
+  <meta property="og:url" content="https://YOUR-USERNAME.github.io/wedding/">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='80' x='12' fill='%23a9864c' font-family='Georgia'%3E%E2%99%A5%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero" id="top">
+    <div class="hero-photo" role="img" aria-label="Johnny and Carla"></div>
+    <div class="hero-veil"></div>
+    <div class="hero-text">
+      <p class="eyebrow">We're getting married</p>
+      <h1 class="names"><span>Johnny</span><span class="amp">&amp;</span><span>Carla</span></h1>
+      <p class="hero-date">Saturday · 12 June 2027</p>
+      <p class="hero-place">Mansourieh, Lebanon</p>
+    </div>
+    <a class="scroll-cue" href="#invite" aria-label="Scroll down">
+      <span></span>
+    </a>
+  </header>
+
+  <main>
+
+    <!-- Invitation -->
+    <section class="section invite reveal" id="invite">
+      <div class="ornament" aria-hidden="true">✦</div>
+      <p class="lead">Together with their families,</p>
+      <h2 class="script">Johnny &amp; Carla</h2>
+      <p class="lead">request the pleasure of your company<br>as they celebrate their marriage</p>
+
+      <div class="countdown" id="countdown" aria-live="off">
+        <div><strong data-cd="d">–</strong><span>days</span></div>
+        <div><strong data-cd="h">–</strong><span>hours</span></div>
+        <div><strong data-cd="m">–</strong><span>minutes</span></div>
+      </div>
+
+      <a class="btn" href="#rsvp">RSVP</a>
+    </section>
+
+    <!-- The day -->
+    <section class="section day" id="day">
+      <h2 class="title reveal">The Day</h2>
+      <p class="subtitle reveal">Saturday 12 June 2027</p>
+
+      <ol class="timeline">
+        <li class="event reveal">
+          <div class="time">5:00 <small>pm</small></div>
+          <div class="event-body">
+            <h3>Church Ceremony</h3>
+            <p class="place">Sainte Thérèse Church</p>
+            <p class="area">Mansourieh</p>
+            <div class="map-links">
+              <a class="chip" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Sainte+Therese+Church+Mansourieh+Lebanon">Google Maps</a>
+              <a class="chip" target="_blank" rel="noopener" href="https://waze.com/ul?q=Sainte%20Therese%20Church%20Mansourieh&amp;navigate=yes">Waze</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="event reveal">
+          <div class="time">7:00 <small>pm</small></div>
+          <div class="event-body">
+            <h3>Welcome Drink</h3>
+            <p class="place">Pleine Nature</p>
+            <p class="area">Mansourieh</p>
+            <div class="map-links">
+              <a class="chip" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Pleine+Nature+Mansourieh+Lebanon">Google Maps</a>
+              <a class="chip" target="_blank" rel="noopener" href="https://waze.com/ul?q=Pleine%20Nature%20Mansourieh&amp;navigate=yes">Waze</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="event reveal">
+          <div class="time">8:00 <small>pm</small></div>
+          <div class="event-body">
+            <h3>Dinner &amp; Celebration</h3>
+            <p class="place">Pleine Nature</p>
+            <p class="area">Mansourieh</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="map-frame reveal">
+        <iframe title="Map to Pleine Nature, Mansourieh" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Pleine+Nature+Mansourieh+Lebanon&amp;output=embed"></iframe>
+      </div>
+
+      <button class="btn ghost reveal" id="calendarBtn" type="button">Add to my calendar</button>
+    </section>
+
+    <!-- Photos -->
+    <section class="section story" id="story">
+      <h2 class="title reveal">Us</h2>
+      <p class="subtitle reveal">A few of our favourite moments</p>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section rsvp" id="rsvp">
+      <div class="card reveal">
+        <div class="ornament" aria-hidden="true">✦</div>
+        <h2 class="title">RSVP</h2>
+        <p class="subtitle" id="rsvpBy"></p>
+
+        <form id="rsvpForm" novalidate>
+          <label class="field">
+            <span>Your full name</span>
+            <input name="name" type="text" autocomplete="name" required maxlength="120" placeholder="e.g. Maya Khoury">
+          </label>
+
+          <fieldset class="field choice">
+            <legend>Will you join us?</legend>
+            <label class="pill"><input type="radio" name="attending" value="Yes" required><span>Joyfully accepts</span></label>
+            <label class="pill"><input type="radio" name="attending" value="No"><span>Regretfully declines</span></label>
+          </fieldset>
+
+          <div class="if-yes" hidden>
+            <label class="field">
+              <span>How many people, including you?</span>
+              <select name="count">
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Names of the people with you <em>(optional)</em></span>
+              <input name="party" type="text" maxlength="300" placeholder="e.g. Elie Khoury">
+            </label>
+
+            <label class="field">
+              <span>Allergies or dietary needs <em>(optional)</em></span>
+              <input name="dietary" type="text" maxlength="300" placeholder="e.g. vegetarian, nut allergy">
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Phone number <em>(optional)</em></span>
+            <input name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="+961 …">
+          </label>
+
+          <label class="field">
+            <span>A message for us <em>(optional)</em></span>
+            <textarea name="message" rows="3" maxlength="1000"></textarea>
+          </label>
+
+          <!-- Spam trap: people never see or fill this -->
+          <label class="trap" aria-hidden="true">Website <input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+
+          <p class="form-error" id="formError" role="alert" hidden></p>
+          <button class="btn wide" type="submit" id="submitBtn">Send my reply</button>
+        </form>
+
+        <div class="thanks" id="thanks" hidden>
+          <h3 class="script" id="thanksTitle">Thank you!</h3>
+          <p id="thanksText"></p>
+          <button class="link-btn" type="button" id="againBtn">Change my answer</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="script">Johnny &amp; Carla</p>
+    <p>12 · 06 · 2027</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="photos/list.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
