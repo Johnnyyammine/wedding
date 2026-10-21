@@ -81,7 +81,7 @@ When you paste the link into WhatsApp, the preview shows the cover photo only if
 ## 5. Check before sending
 
 - Open the link on your own phone and send yourself a test RSVP. Check that it shows up in the Sheet, then delete that row.
-- Tap every **Google Maps / Waze** button and make sure it lands on the right place. If one doesn't:
+- Tap every **Google Maps** button and make sure it lands on the right place. If one doesn't:
   1. Find the place in Google Maps.
   2. Tap **Share** and copy the link.
   3. Replace that button's `href` in `index.html` with the copied link.
