@@ -179,4 +179,66 @@
         submitBtn.textContent = 'Send my reply';
       });
   });
+
+  // ---------- opening envelope + music ----------
+
+  var root = document.documentElement;
+  var opener = $('#opener');
+  var music = $('#music');
+  var musicBtn = $('#musicBtn');
+  var wantMusic = true;
+
+  if (W.music) music.src = W.music;
+
+  function setMusicButton() {
+    var playing = !music.paused;
+    musicBtn.classList.toggle('paused', !playing);
+    musicBtn.setAttribute('aria-label', playing ? 'Pause music' : 'Play music');
+  }
+
+  function fadeIn() {
+    music.volume = 0;
+    var v = 0;
+    var t = setInterval(function () {
+      v = Math.min(0.6, v + 0.04);
+      music.volume = v;
+      if (v >= 0.6) clearInterval(t);
+    }, 120);
+  }
+
+  function playMusic() {
+    var p = music.play();
+    if (p && p.then) p.then(setMusicButton, setMusicButton); else setMusicButton();
+    fadeIn();
+  }
+
+  function openInvitation() {
+    if (root.classList.contains('opening')) return;
+    root.classList.add('opening');
+    playMusic(); // must start inside the tap so phones allow sound
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(function () {
+      window.scrollTo(0, 0);
+      root.classList.remove('sealed');
+      root.classList.add('opened');
+      musicBtn.hidden = false;
+      setTimeout(function () { opener.remove(); }, 1000);
+    }, reduce ? 200 : 1900);
+  }
+
+  opener.addEventListener('click', openInvitation);
+
+  musicBtn.addEventListener('click', function () {
+    wantMusic = music.paused;
+    if (wantMusic) playMusic(); else { music.pause(); setMusicButton(); }
+  });
+  music.addEventListener('play', setMusicButton);
+  music.addEventListener('pause', setMusicButton);
+
+  // Stop when the guest switches apps or locks the phone; resume when they come back.
+  document.addEventListener('visibilitychange', function () {
+    if (!root.classList.contains('opened')) return;
+    if (document.hidden) music.pause();
+    else if (wantMusic) music.play().catch(function () {});
+  });
 })();

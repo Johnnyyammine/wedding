@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f6f0e6">
   <meta name="color-scheme" content="light">
-  <script>document.documentElement.classList.add('js')</script>
+  <script>document.documentElement.classList.add('js', 'sealed')</script>
   <title>Johnny &amp; Carla · 12 June 2027</title>
   <meta name="description" content="Johnny & Carla are getting married on Saturday 12 June 2027 in Mansourieh. Kindly RSVP.">
 
@@ -23,6 +23,31 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Opening screen: guests tap the envelope to open the invitation (and start the music) -->
+  <div class="opener" id="opener">
+    <p class="opener-kicker">You are invited</p>
+    <p class="opener-names">Johnny <span>&amp;</span> Carla</p>
+
+    <button class="envelope" id="envelope" type="button" aria-label="Open the invitation">
+      <span class="env-back"></span>
+      <span class="env-letter">
+        <span class="env-letter-names">J <i>&amp;</i> C</span>
+        <span class="env-letter-date">12 · 06 · 2027</span>
+      </span>
+      <span class="env-pocket"></span>
+      <span class="env-flap"></span>
+      <span class="env-seal">J<i>&amp;</i>C</span>
+    </button>
+
+    <p class="opener-hint">Tap the envelope to open</p>
+    <p class="opener-sound">♪ with music</p>
+  </div>
+
+  <audio id="music" src="music/canon.m4a" loop preload="none"></audio>
+  <button class="music-btn" id="musicBtn" type="button" aria-label="Pause music" hidden>
+    <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  </button>
 
   <!-- Hero -->
   <header class="hero" id="top">

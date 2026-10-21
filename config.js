@@ -9,4 +9,8 @@ window.WEDDING = {
   // Paste the Google Apps Script "Web app" URL here (see SETUP.md, step 2).
   // While it is empty the form runs in preview mode and nothing is saved.
   rsvpUrl: '',
+
+  // Background music that starts when the guest opens the envelope.
+  // To use your own song, put an .mp3 or .m4a in the music folder and change this.
+  music: 'music/canon.m4a',
 };

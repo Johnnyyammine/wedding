@@ -10,6 +10,7 @@ A one-page, phone-first invitation site with an RSVP form. It costs nothing to r
 | `style.css` | Colours, fonts and layout |
 | `app.js` | Countdown, gallery, calendar button, sending the RSVP |
 | `config.js` | Wedding time, RSVP deadline, the Google Sheet link |
+| `music/canon.m4a` | Background music (a piano Canon in D, public domain) that starts when guests open the envelope. Swap it via `music` in `config.js` |
 | `photos/` | The shrunk photos that go online (made by the photo tool) |
 | `photos-original/` | Your full-size photos. They stay on your Mac and are never uploaded. |
 | `tools/prepare_photos.sh` | Shrinks the photos and builds the gallery list |
