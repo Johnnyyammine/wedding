@@ -9,8 +9,8 @@ cd "$(dirname "$0")/.."
 
 SRC=photos-original
 OUT=photos
-mkdir -p "$OUT"
-rm -f "$OUT"/[0-9][0-9].jpg
+mkdir -p "$OUT/thumbs"
+rm -f "$OUT"/[0-9][0-9].jpg "$OUT"/thumbs/[0-9][0-9].jpg
 
 shopt -s nullglob nocaseglob
 hero=( "$SRC"/hero.* )
@@ -26,12 +26,12 @@ for f in "$SRC"/*.{jpg,jpeg,png,heic,heif,webp}; do
   base=$(basename "$f"); [[ "${base%.*}" =~ ^[Hh][Ee][Rr][Oo]$ ]] && continue
   n=$((n + 1)); name=$(printf '%02d.jpg' "$n")
   sips -s format jpeg -s formatOptions 78 -Z 1600 "$f" --out "$OUT/$name" >/dev/null
-  w=$(sips -g pixelWidth "$OUT/$name" | awk '/pixelWidth/ {print $2}')
-  h=$(sips -g pixelHeight "$OUT/$name" | awk '/pixelHeight/ {print $2}')
+  sips -s format jpeg -s formatOptions 72 -Z 800 "$OUT/$name" --out "$OUT/thumbs/$name" >/dev/null
   list+="
-  { file: '$name', w: $w, h: $h },"
-  echo "$base  → $OUT/$name (${w}×${h})"
+  { src: 'photos/$name', thumb: 'photos/thumbs/$name' },"
+  echo "$base  → $OUT/$name"
 done
 printf '%s\n];\n' "$list" > "$OUT/list.js"
 
+if (( n % 2 )); then echo "Note: $n gallery photos is an odd number. The gallery is 2 across, so add or remove one to fill the last row."; fi
 echo "Done: $n gallery photos. Total size: $(du -sh "$OUT" | cut -f1)"

@@ -20,28 +20,118 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
+  <!-- Shared paper, liner and wax definitions for the envelope -->
+  <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="gPaperL" x1="0" y1="0" x2="1" y2="0.6"><stop offset="0" stop-color="#f1e7d6"/><stop offset="1" stop-color="#e4d5bc"/></linearGradient>
+      <linearGradient id="gPaperR" x1="1" y1="0" x2="0" y2="0.6"><stop offset="0" stop-color="#ede2cf"/><stop offset="1" stop-color="#e0d0b5"/></linearGradient>
+      <linearGradient id="gPaperB" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#f4ecde"/><stop offset="1" stop-color="#e9dcc6"/></linearGradient>
+      <linearGradient id="gFlap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3eadb"/><stop offset="1" stop-color="#e6d7bf"/></linearGradient>
+      <linearGradient id="gFoil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9cf95"/><stop offset=".45" stop-color="#b8904f"/><stop offset=".7" stop-color="#ddc187"/><stop offset="1" stop-color="#a47c3e"/></linearGradient>
+      <radialGradient id="gWax" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#e2bf7c"/><stop offset=".45" stop-color="#b98a45"/><stop offset="1" stop-color="#7a5322"/></radialGradient>
+      <radialGradient id="gWaxInner" cx=".6" cy=".7" r=".7"><stop offset="0" stop-color="#c49752"/><stop offset="1" stop-color="#9a6f34"/></radialGradient>
+      <pattern id="pLiner" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="12" height="12" fill="#5b4636"/>
+        <path d="M0 6h12M6 0v12" stroke="#c9aa72" stroke-width=".35" opacity=".55"/>
+        <circle cx="6" cy="6" r="1.1" fill="#d8bb82"/>
+        <circle cx="0" cy="0" r=".6" fill="#d8bb82" opacity=".7"/><circle cx="12" cy="0" r=".6" fill="#d8bb82" opacity=".7"/>
+        <circle cx="0" cy="12" r=".6" fill="#d8bb82" opacity=".7"/><circle cx="12" cy="12" r=".6" fill="#d8bb82" opacity=".7"/>
+      </pattern>
+      <filter id="fGrain" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch" result="n"/>
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 .45  0 0 0 0 .36  0 0 0 0 .25  0 0 0 .09 0"/>
+        <feComposite in2="SourceGraphic" operator="in"/>
+      </filter>
+      <filter id="fLift" x="-10%" y="-20%" width="120%" height="140%"><feDropShadow dx="0" dy="-.4" stdDeviation=".7" flood-color="#6b5135" flood-opacity=".22"/></filter>
+      <filter id="fFlapShadow" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy=".9" stdDeviation="1.1" flood-color="#5a4128" flood-opacity=".28"/></filter>
+      <filter id="fSeal" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2.2" stdDeviation="2.2" flood-color="#3e2a12" flood-opacity=".45"/></filter>
+      <filter id="fSoft"><feGaussianBlur stdDeviation="2.4"/></filter>
+    </defs>
+  </svg>
+
   <!-- Opening screen: guests tap the envelope to open the invitation (and start the music) -->
   <div class="opener" id="opener">
-    <p class="opener-kicker">You are invited</p>
-    <p class="opener-names">Johnny <span>&amp;</span> Carla</p>
+    <div class="dust" id="dust" aria-hidden="true"></div>
+
+    <div class="opener-head">
+      <p class="opener-kicker">You are cordially invited<br>to the wedding of</p>
+      <p class="opener-names foil"><span>Johnny</span><span class="amp">&amp;</span><span>Carla</span></p>
+      <p class="opener-rule" aria-hidden="true"><span></span><i>◆</i><span></span></p>
+      <p class="opener-date">12 · 06 · 2027</p>
+    </div>
 
     <button class="envelope" id="envelope" type="button" aria-label="Open the invitation">
-      <span class="env-back"></span>
-      <span class="env-letter">
-        <span class="env-letter-names">J <i>&amp;</i> C</span>
-        <span class="env-letter-date">12 · 06 · 2027</span>
+      <span class="env-back">
+        <svg viewBox="0 0 145 100" preserveAspectRatio="none"><rect width="145" height="100" rx="3" fill="url(#pLiner)"/><rect width="145" height="100" rx="3" fill="#000" opacity=".12"/></svg>
       </span>
-      <span class="env-pocket"></span>
-      <span class="env-flap"></span>
-      <span class="env-seal">J<i>&amp;</i>C</span>
+
+      <span class="env-card">
+        <span class="card-frame">
+          <span class="card-kicker">The wedding of</span>
+          <span class="card-names">Johnny<i>&amp;</i>Carla</span>
+          <span class="card-date">Saturday · 12 June 2027</span>
+        </span>
+      </span>
+
+      <span class="env-pocket">
+        <svg viewBox="0 0 145 100" preserveAspectRatio="none">
+          <clipPath id="cPocket"><path d="M0,0 L66,49 Q72.5,53.5 79,49 L145,0 V100 H0 Z"/></clipPath>
+          <path d="M0,0 L67,50 Q70,52.5 67,55 L0,100 Z" fill="url(#gPaperL)"/>
+          <path d="M145,0 L78,50 Q75,52.5 78,55 L145,100 Z" fill="url(#gPaperR)"/>
+          <path d="M0,100 L65,51 Q72.5,45.5 80,51 L145,100 Z" fill="url(#gPaperB)" filter="url(#fLift)"/>
+          <rect width="145" height="100" fill="#fff" filter="url(#fGrain)" clip-path="url(#cPocket)"/>
+        </svg>
+      </span>
+
+      <span class="env-flap">
+        <span class="flap-face flap-front">
+          <svg viewBox="0 0 145 62" preserveAspectRatio="none">
+            <path d="M0,0 H145 L80.5,54.5 Q72.5,61 64.5,54.5 Z" fill="url(#gFlap)" filter="url(#fFlapShadow)"/>
+            <path d="M0,0 H145 L80.5,54.5 Q72.5,61 64.5,54.5 Z" fill="#fff" filter="url(#fGrain)"/>
+            <path d="M.5,.4 L64.5,54.5 Q72.5,61 80.5,54.5 L144.5,.4" fill="none" stroke="url(#gFoil)" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+          </svg>
+        </span>
+        <span class="flap-face flap-back">
+          <svg viewBox="0 0 145 62" preserveAspectRatio="none">
+            <path d="M0,62 H145 L80.5,7.5 Q72.5,1 64.5,7.5 Z" fill="#efe5d4"/>
+            <path d="M5,62 H140 L79,10.5 Q72.5,5.5 66,10.5 Z" fill="url(#pLiner)"/>
+          </svg>
+        </span>
+      </span>
+
+      <span class="env-seal">
+        <svg viewBox="0 0 100 100">
+          <g filter="url(#fSeal)">
+            <path fill="url(#gWax)" d="M97.9,50.0 L97.9,54.2 L95.4,58.0 L93.9,61.8 L93.6,65.9 L91.5,69.4 L88.3,72.1 L86.4,75.5 L84.4,78.9 L81.4,81.4 L78.3,83.7 L74.8,85.4 L70.8,86.1 L67.8,88.2 L65.6,92.9 L62.5,96.6 L58.3,97.2 L54.1,97.2 L50.0,97.0 L46.0,95.5 L42.3,93.9 L38.5,92.9 L35.2,90.6 L32.0,88.6 L27.8,88.4 L23.8,87.5 L21.6,83.8 L19.8,80.2 L16.8,77.9 L13.4,75.7 L9.8,73.2 L6.1,70.5 L4.4,66.6 L5.1,62.0 L5.0,57.9 L4.5,54.0 L6.4,50.0 L8.6,46.4 L8.5,42.7 L7.8,38.7 L8.0,34.7 L8.5,30.6 L10.4,27.1 L14.0,24.8 L16.4,21.8 L17.1,17.1 L19.3,13.4 L23.0,11.5 L26.6,9.5 L30.3,7.8 L34.6,7.8 L38.7,7.9 L42.6,8.0 L46.4,8.9 L50.0,8.6 L53.9,5.5 L58.2,3.5 L62.0,5.1 L65.6,7.2 L69.3,8.5 L72.8,10.5 L76.4,12.4 L80.2,14.0 L82.8,17.2 L84.4,21.2 L86.8,24.2 L89.1,27.4 L88.9,31.9 L88.4,36.0 L90.3,39.2 L93.0,42.4 L95.6,46.0Z"/>
+          </g>
+          <circle cx="50" cy="51" r="32" fill="url(#gWaxInner)"/>
+          <circle cx="50" cy="51" r="32" fill="none" stroke="#6e4a1d" stroke-width="1.6" opacity=".55"/>
+          <circle cx="50" cy="51" r="34.2" fill="none" stroke="#f3d9a2" stroke-width=".9" opacity=".45"/>
+          <circle cx="50" cy="51" r="27.5" fill="none" stroke="#6e4a1d" stroke-width=".6" opacity=".35" stroke-dasharray="1.2 2"/>
+          <g font-family="'Cormorant Garamond', Garamond, serif" text-anchor="middle">
+            <text x="50.6" y="60.4" font-size="27" font-weight="600" fill="#f6dfab" opacity=".55">J<tspan font-size="15" font-style="italic" dx="1" dy="-2">&amp;</tspan><tspan dx="1" dy="2">C</tspan></text>
+            <text x="50" y="59.4" font-size="27" font-weight="600" fill="#6b461a">J<tspan font-size="15" font-style="italic" dx="1" dy="-2">&amp;</tspan><tspan dx="1" dy="2">C</tspan></text>
+          </g>
+          <ellipse cx="36" cy="30" rx="15" ry="8" fill="#fff6e0" opacity=".35" transform="rotate(-30 36 30)" filter="url(#fSoft)"/>
+        </svg>
+      </span>
     </button>
 
-    <p class="opener-hint">Tap the envelope to open</p>
-    <p class="opener-sound">♪ with music</p>
+    <div class="opener-foot">
+      <p class="opener-hint">Tap the seal to open</p>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <img id="lbImg" alt="">
+    <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close">×</button>
+    <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Previous photo">‹</button>
+    <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Next photo">›</button>
+    <p class="lb-count" id="lbCount"></p>
   </div>
 
   <audio id="music" src="music/canon.m4a" loop preload="none"></audio>
@@ -70,8 +160,8 @@
     <section class="section invite reveal" id="invite">
       <div class="ornament" aria-hidden="true">✦</div>
       <p class="lead">Together with their families,</p>
-      <h2 class="script">Johnny &amp; Carla</h2>
-      <p class="lead">request the pleasure of your company<br>as they celebrate their marriage</p>
+      <h2 class="script foil">Johnny &amp; Carla</h2>
+      <p class="lead">request the pleasure of your company as they celebrate their marriage</p>
 
       <div class="countdown" id="countdown" aria-live="off">
         <div><strong data-cd="d">–</strong><span>days</span></div>
@@ -209,8 +299,8 @@
     <p>12 · 06 · 2027</p>
   </footer>
 
-  <script src="config.js?v=3"></script>
-  <script src="photos/list.js?v=3"></script>
-  <script src="app.js?v=3"></script>
+  <script src="config.js?v=5"></script>
+  <script src="photos/list.js?v=5"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
